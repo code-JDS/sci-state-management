@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:">
+  <title>{{PAGE_TITLE}}</title>
+  <style>{{INLINE_CSS}}</style>
+</head>
+<body>
+  <header class="project-header">
+    <div class="project-summary">
+      <div>
+        <div class="eyebrow">总体任务</div>
+        <h1>{{TASK_NAME}}</h1>
+      </div>
+      <div class="summary-stats" aria-label="任务状态统计">{{STATUS_STATS}}</div>
+    </div>
+    <details class="project-goal">
+      <summary>总体目标</summary>
+      <div class="goal-copy">{{GOAL}}</div>
+    </details>
+  </header>
+
+  <main class="workspace">
+    <section class="graph-panel" aria-label="任务依赖图">
+      <div class="graph-toolbar">
+        <div>
+          <strong>任务依赖</strong>
+          <span>箭头由前置任务指向后续任务</span>
+        </div>
+        <span class="drag-hint">节点可临时拖拽 · 刷新后恢复</span>
+      </div>
+      <div class="graph-viewport" tabindex="0">
+        <div id="graph-canvas" class="graph-canvas" style="width:{{CANVAS_WIDTH}}px;height:{{CANVAS_HEIGHT}}px">
+          <svg id="dependency-svg" class="dependency-svg" width="{{CANVAS_WIDTH}}" height="{{CANVAS_HEIGHT}}" viewBox="0 0 {{CANVAS_WIDTH}} {{CANVAS_HEIGHT}}" aria-hidden="true">
+            <defs>
+              <marker id="dependency-arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head"></path>
+              </marker>
+            </defs>
+            {{EDGES}}
+          </svg>
+          {{NODES}}
+        </div>
+      </div>
+    </section>
+
+    <aside class="detail-panel" aria-label="任务详情">
+      {{DETAILS}}
+    </aside>
+  </main>
+  <script>{{INLINE_JS}}</script>
+</body>
+</html>
