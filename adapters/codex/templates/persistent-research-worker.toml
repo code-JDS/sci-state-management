@@ -16,4 +16,11 @@ command = "/bin/sh"
 args = ["-c", "exec \"$HOME/.codex/statemng/__PROJECT_NAME__/mcp\""]
 required = false
 default_tools_approval_mode = "writes"
-disabled_tools = ["statemng_task_accept", "statemng_task_unblock"]
+enabled_tools = [
+    "statemng_task_claim",
+    "statemng_task_show",
+    "statemng_artifact_add",
+    "statemng_task_submit",
+    "statemng_task_block",
+    "statemng_task_fail",
+]

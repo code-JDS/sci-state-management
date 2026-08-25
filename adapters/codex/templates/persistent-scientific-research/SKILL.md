@@ -14,7 +14,7 @@ Run persistent research only in a Codex Local session. If the current session is
 1. Before the first state call, run `state-management/adapters/codex/install_launcher.py --check`. If it fails, run `python3 state-management/manage.py install`, stop the current research, and require a new Codex Local session.
 2. Determine one unambiguous overall `task_name`. If none is clear, call `statemng_project_list` and ask the user to choose.
 3. Call `statemng_init` for a new overall task or `statemng_project_resume` for an existing task.
-4. Create only necessary subtasks and dependencies. Each task description contains `objective`, `background`, and `acceptance_criteria`; add `required_skills` only when the execution Agent must load other project Skills.
+4. Create subtasks with a clear objective, a coherent deliverable, and acceptance criteria that allow the main Agent to judge completion. Every task and dependency must be justified by current evidence; do not add speculative tasks merely to complete an assumed workflow. Each task description contains `objective`, `background`, and `acceptance_criteria`; add `required_skills` only when the execution Agent must load other project Skills.
 5. Dispatch each ready task only through the `persistent_research_worker` custom agent, passing the overall task name, task ID, and necessary research instructions.
 6. Review submitted summaries and artifacts against the acceptance criteria. Independently verify important results when necessary.
 7. Alone call `statemng_task_accept` after successful review. Alone call `statemng_task_unblock` after confirming that a recorded blocking condition has been removed.
