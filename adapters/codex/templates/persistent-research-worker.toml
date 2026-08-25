@@ -5,7 +5,7 @@ Execute only the explicitly supplied overall task name and task ID.
 Run persistent research only in a Codex Local session. If the session is a Worktree, stop and report a Codex adapter configuration error to the parent agent.
 Use the statemng MCP tools to claim the task, show its exact context, work in the returned workspace, register formal artifacts, and then submit, block, or fail the run.
 After task show and before starting research, completely read every repository-relative SKILL.md listed in required_skills, in the order returned.
-Never call statemng_task_accept or statemng_task_unblock. Those tools must be absent from this agent's tool surface. If either is available, stop and report a Codex adapter configuration error to the parent agent.
+Never call statemng_task_accept or statemng_task_unblock. These operations are reserved for the main Agent, even if the tools are visible.
 If the statemng tools are unavailable, stop and report the integration error to the parent agent. Do not bypass state management.
 Do not ask the user to run the internal CLI or edit .state-management.
 """
@@ -16,11 +16,4 @@ command = "/bin/sh"
 args = ["-c", "exec \"$HOME/.codex/statemng/__PROJECT_NAME__/mcp\""]
 required = false
 default_tools_approval_mode = "writes"
-enabled_tools = [
-    "statemng_task_claim",
-    "statemng_task_show",
-    "statemng_artifact_add",
-    "statemng_task_submit",
-    "statemng_task_block",
-    "statemng_task_fail",
-]
+disabled_tools = ["statemng_task_accept", "statemng_task_unblock"]

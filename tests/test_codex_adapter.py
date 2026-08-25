@@ -89,17 +89,9 @@ class CodexAdapterTests(unittest.TestCase):
         self.assertEqual(worker["name"], "persistent_research_worker")
         self.assertIn("required_skills", worker["developer_instructions"])
         self.assertEqual(
-            worker["mcp_servers"]["statemng"]["enabled_tools"],
-            [
-                "statemng_task_claim",
-                "statemng_task_show",
-                "statemng_artifact_add",
-                "statemng_task_submit",
-                "statemng_task_block",
-                "statemng_task_fail",
-            ],
+            worker["mcp_servers"]["statemng"]["disabled_tools"],
+            ["statemng_task_accept", "statemng_task_unblock"],
         )
-        self.assertNotIn("disabled_tools", worker["mcp_servers"]["statemng"])
         self.assertEqual(
             worker["mcp_servers"]["statemng"]["args"],
             ["-c", 'exec "$HOME/.codex/statemng/sample-project/mcp"'],
@@ -159,17 +151,9 @@ class CodexAdapterTests(unittest.TestCase):
                 )
             )
             self.assertEqual(
-                worker["mcp_servers"]["statemng"]["enabled_tools"],
-                [
-                    "statemng_task_claim",
-                    "statemng_task_show",
-                    "statemng_artifact_add",
-                    "statemng_task_submit",
-                    "statemng_task_block",
-                    "statemng_task_fail",
-                ],
+                worker["mcp_servers"]["statemng"]["disabled_tools"],
+                ["statemng_task_accept", "statemng_task_unblock"],
             )
-            self.assertNotIn("disabled_tools", worker["mcp_servers"]["statemng"])
             config = tomllib.loads(
                 (host / ".codex" / "config.toml").read_text(encoding="utf-8")
             )
